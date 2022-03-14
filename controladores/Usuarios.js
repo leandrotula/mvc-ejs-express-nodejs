@@ -17,9 +17,10 @@ const ObtenerVistaPrincipal = (req, res) => {
 const ProcesarFormulario = (req, res) => {
 
   var nombre = req.body.nombre;
-  //var apellido = req.body.apellido;
+  var apellido = req.body.apellido;
   var usuarioObtenido = {
-    nombre
+    nombre,
+    apellido
   }
 
   res.render('vistas/vistaUsuario', {
