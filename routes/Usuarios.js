@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const { GetAllUsers, GetUser, GetUsuario } = require("../controladores/Usuarios");
+const { ObtenerTodosUsuarios, ObtenerUsuario, ObtenerVistaPrincipal, ProcesarFormulario } = require("../controladores/Usuarios");
 
-router.get("/all", GetAllUsers);
-//router.get("/:id", GetUser);
-router.get("/:id", GetUsuario);
+router.get("/", ObtenerVistaPrincipal);
+router.post("/", ProcesarFormulario);
+router.get("/all", ObtenerTodosUsuarios);
+router.get("/:id", ObtenerUsuario);
 
 module.exports = router;

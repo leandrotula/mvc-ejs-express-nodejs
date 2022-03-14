@@ -1,7 +1,6 @@
 const { INFORMACION_USUARIO } = require("../modelo/DatosDeUsuario");
 
-// Returns User With Id
-const QueryUserById = (id) => {
+const buscarUsuarioPorId = (id) => {
   let user;
   INFORMACION_USUARIO.forEach((userData) => {
     if (userData.id === Number(id)) {
@@ -11,12 +10,11 @@ const QueryUserById = (id) => {
   return user;
 };
 
-// Returns List of Users
-const QueryListOfUsers = () => {
+const ObtenerUsuarios = () => {
   return INFORMACION_USUARIO;
 };
 
 module.exports = {
-  QueryUserById,
-  QueryListOfUsers,
+  ObtenerUsuarioPorId: buscarUsuarioPorId,
+  ObtenerUsuarios: ObtenerUsuarios,
 };

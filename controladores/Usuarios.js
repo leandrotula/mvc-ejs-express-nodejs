@@ -1,24 +1,35 @@
 const {
-  QueryListOfUsers,
-  QueryUserById,
+  ObtenerUsuarios,
+  ObtenerUsuarioPorId,
 } = require("../service/UsuarioAccesoFuenteDatos");
 
-const GetAllUsers = (req, res) => {
-  const userList = QueryListOfUsers();
+const ObtenerTodosUsuarios = (req, res) => {
+  const userList = ObtenerUsuarios();
 
   return res.json(userList);
 };
 
-const GetUser = (req, res) => {
-  const userId = req.params.id;
-  const user = QueryUserById(userId);
+const ObtenerVistaPrincipal = (req, res) => {
 
-  return res.json(user);
-};
+  res.render('vistas/formulario')
+}
 
-const GetUsuario = (req, res) => {
+const ProcesarFormulario = (req, res) => {
+
+  var nombre = req.body.nombre;
+  //var apellido = req.body.apellido;
+  var usuarioObtenido = {
+    nombre
+  }
+
+  res.render('vistas/vistaUsuario', {
+    usuario: usuarioObtenido
+  })
+}
+
+const ObtenerUsuario = (req, res) => {
   const userId = req.params.id;
-  const usuarioObtenido = QueryUserById(userId);
+  const usuarioObtenido = ObtenerUsuarioPorId(userId);
 
   res.render('vistas/vistaUsuario', {
     usuario: usuarioObtenido
@@ -26,7 +37,8 @@ const GetUsuario = (req, res) => {
 };
 
 module.exports = {
-  GetAllUsers,
-  GetUser,
-  GetUsuario
+  ObtenerTodosUsuarios: ObtenerTodosUsuarios,
+  ObtenerUsuario: ObtenerUsuario,
+  ObtenerVistaPrincipal: ObtenerVistaPrincipal,
+  ProcesarFormulario: ProcesarFormulario
 };
