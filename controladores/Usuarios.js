@@ -14,8 +14,13 @@ const ObtenerVistaPrincipal = (req, res) => {
   res.render('vistas/formulario')
 }
 
-const ProcesarFormulario = (req, res) => {
+const ProcesarFormulario = (req, res, errors) => {
 
+  if (!errors.isEmpty()) {
+    console.log("Errores ", errors)
+    res.render('vistas/error')
+    return;
+  }
   var nombre = req.body.nombre;
   var apellido = req.body.apellido;
   var usuarioObtenido = {
