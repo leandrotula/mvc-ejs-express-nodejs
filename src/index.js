@@ -5,9 +5,9 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 
-const oneDay = 1000 * 60 * 60 * 24;
+const unDia = 1000 * 60 * 60 * 24;
 
-const PORT = 3000;
+const PORT = 3001;
 
 app.set('view engine', 'ejs')
 
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(sessions({
   secret: "123456",
   saveUninitialized:true,
-  cookie: { maxAge: oneDay },
+  cookie: { maxAge: unDia },
   resave: false
 }));
 

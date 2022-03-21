@@ -15,7 +15,7 @@ let INFORMACION_USUARIO = [
 
 let USUARIO_SESION_VALIDO = {
   nombre: "usuario",
-  apellido: "apellido"
+  password: "123456"
 }
 
 module.exports = { 

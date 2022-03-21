@@ -1,4 +1,5 @@
 var session = require("express-session");
+const bcrypt = require("bcrypt");
 const { USUARIO_SESION_VALIDO } = require("../modelo/DatosDeUsuario");
 const {
   ObtenerUsuarios,
@@ -30,13 +31,16 @@ const ProcesarFormulario = (req, res, errors) => {
     return;
   }
   var nombre = req.body.nombre;
-  var apellido = req.body.apellido;
+  var password = req.body.password;
+  var passwordEncriptadoEsperado = bcrypt.hashSync(USUARIO_SESION_VALIDO.password, 5);
   var usuarioObtenido = {
-    nombre,
-    apellido
+    nombre
   }
-  
-  if (nombre == USUARIO_SESION_VALIDO.nombre && apellido == USUARIO_SESION_VALIDO.apellido) {
+
+  var esValidoElPasswordHasheado = bcrypt.compareSync(password, passwordEncriptadoEsperado);
+  console.log("Password validas ", esValidoElPasswordHasheado);
+
+  if (nombre == USUARIO_SESION_VALIDO.nombre && esValidoElPasswordHasheado) {
     session = req.session;
     session.userid = nombre;
     console.log(req.session)
