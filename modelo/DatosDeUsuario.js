@@ -13,4 +13,12 @@ let INFORMACION_USUARIO = [
   },
 ];
 
-module.exports = { INFORMACION_USUARIO: INFORMACION_USUARIO };
+let USUARIO_SESION_VALIDO = {
+  nombre: "usuario",
+  apellido: "apellido"
+}
+
+module.exports = { 
+  INFORMACION_USUARIO,
+  USUARIO_SESION_VALIDO
+};

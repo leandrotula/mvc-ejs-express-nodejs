@@ -3,8 +3,9 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
 
-const { ObtenerTodosUsuarios, ObtenerUsuario, ObtenerVistaPrincipal, ProcesarFormulario } = require("../controladores/Usuarios");
+const { ObtenerTodosUsuarios, ObtenerUsuario, ObtenerVistaPrincipal, ProcesarFormulario, destruirSesion } = require("../controladores/Usuarios");
 
+router.get("/salir", destruirSesion);
 router.get("/", ObtenerVistaPrincipal);
 router.post("/",
 body('nombre').isLength({ min: 5 }),
